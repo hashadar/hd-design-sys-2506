@@ -1,4 +1,6 @@
 <script lang="ts">
+	import { PageHeader, Section, Grid, Card, ColorSwatch, SpacingDemo, CodeBlock } from '$lib/components/index.js';
+
 	// Token categories and examples
 	const colorTokens = [
 		{
@@ -49,14 +51,52 @@
 	];
 
 	const spacingTokens = [
-		{ name: 'space-tight', value: '0.25rem', usage: 'tight spacing' },
-		{ name: 'space-compact', value: '0.5rem', usage: 'compact spacing' },
-		{ name: 'space-normal', value: '0.75rem', usage: 'normal spacing' },
-		{ name: 'space-comfortable', value: '1rem', usage: 'comfortable spacing' },
-		{ name: 'space-loose', value: '1.5rem', usage: 'loose spacing' },
-		{ name: 'space-spacious', value: '2rem', usage: 'spacious spacing' },
-		{ name: 'space-generous', value: '3rem', usage: 'generous spacing' }
+		{ name: 'tight', value: '0.25rem', usage: 'tight spacing', pixels: '4px' },
+		{ name: 'compact', value: '0.5rem', usage: 'compact spacing', pixels: '8px' },
+		{ name: 'normal', value: '0.75rem', usage: 'normal spacing', pixels: '12px' },
+		{ name: 'comfortable', value: '1rem', usage: 'comfortable spacing', pixels: '16px' },
+		{ name: 'loose', value: '1.5rem', usage: 'loose spacing', pixels: '24px' },
+		{ name: 'spacious', value: '2rem', usage: 'spacious spacing', pixels: '32px' },
+		{ name: 'generous', value: '3rem', usage: 'generous spacing', pixels: '48px' }
 	];
+
+	const cssCode = `/* Design Tokens */
+:root {
+  /* Color Tokens */
+  --color-cream-50: #fdfbf7;
+  --color-cream-100: #f9f5ed;
+  --color-cream-200: #f2e8d8;
+  --color-cream-300: #e6d9c2;
+  --color-cream-400: #d9c9ab;
+  --color-cream-500: #ccb994;
+  --color-cream-600: #bfa97d;
+  --color-cream-700: #b29966;
+  --color-cream-800: #a5894f;
+  --color-cream-900: #987938;
+
+  /* Spacing Tokens */
+  --space-tight: 0.25rem;      /* 4px */
+  --space-compact: 0.5rem;     /* 8px */
+  --space-normal: 0.75rem;     /* 12px */
+  --space-comfortable: 1rem;   /* 16px */
+  --space-loose: 1.5rem;       /* 24px */
+  --space-spacious: 2rem;      /* 32px */
+  --space-generous: 3rem;      /* 48px */
+
+  /* Typography Tokens */
+  --font-primary: 'Cormorant', serif;
+  --font-mono: 'JetBrains Mono', monospace;
+  
+  /* Border Radius Tokens */
+  --border-radius-sm: 0.25rem;
+  --border-radius-base: 0.5rem;
+  --border-radius-lg: 1rem;
+
+  /* Shadow Tokens */
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1);
+  --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.1);
+}`;
 </script>
 
 <svelte:head>
@@ -67,260 +107,220 @@
 	/>
 </svelte:head>
 
-<!-- Page Header -->
-<header class="page-header">
-	<h1 class="page-title">design tokens</h1>
-	<p class="page-description">
-		foundational design decisions expressed as named variables that ensure 
-		consistency, maintainability, and scalability across all interfaces.
-	</p>
-</header>
+<PageHeader 
+	title="design tokens"
+	description="foundational design decisions expressed as named variables that ensure consistency, maintainability, and scalability across all interfaces."
+/>
 
 <!-- Token Philosophy Section -->
-<section class="section">
+<Section>
 	<h2 class="section-title">token philosophy</h2>
 
-	<div class="grid grid-3">
-		<div class="card">
-			<h3 class="card-title">systematic naming</h3>
+	<Grid columns={3}>
+		<Card title="systematic naming" variant="featured">
 			<p class="card-description">
 				clear, hierarchical naming conventions make tokens easy to understand 
 				and use across different contexts and team members.
 			</p>
-		</div>
+		</Card>
 
-		<div class="card">
-			<h3 class="card-title">single source of truth</h3>
+		<Card title="single source of truth" variant="featured">
 			<p class="card-description">
 				centralised tokens eliminate inconsistencies and make global design 
 				changes simple and reliable across the entire system.
 			</p>
-		</div>
+		</Card>
 
-		<div class="card">
-			<h3 class="card-title">scalable architecture</h3>
+		<Card title="scalable architecture" variant="featured">
 			<p class="card-description">
 				flexible token structure supports themes, customisation, and future 
 				expansion whilst maintaining design system integrity.
 			</p>
-		</div>
-	</div>
-</section>
+		</Card>
+	</Grid>
+</Section>
 
 <!-- Color Tokens Section -->
-<section class="section">
+<Section>
 	<h2 class="section-title">colour tokens</h2>
 	<p class="mb-comfortable text-secondary">
 		comprehensive colour scales with semantic naming for consistent colour usage.
 	</p>
 
-	{#each colorTokens as palette, paletteIndex (palette.category)}
-		<div class="card" style="margin-bottom: 2rem;">
-			<h3 class="card-title">{palette.category} palette</h3>
-			<div class="grid-4 grid" style="margin-top: 1rem;">
+	{#each colorTokens as palette (palette.category)}
+		<Card title="{palette.category} palette" variant="default" class="mb-spacious">
+			<Grid columns={4} class="mt-normal">
 				{#each palette.tokens as token (token)}
-					<div style="text-align: centre;">
-						<div 
-							class="color-swatch" 
-							style="background-color: var(--color-{token}); width: 100%; height: 3rem; margin-bottom: 0.5rem;"
-						></div>
-						<code class="text-xs">--color-{token}</code>
-					</div>
+					<ColorSwatch 
+						color="var(--color-{token})"
+						name={token}
+						size="md"
+						showLabel={true}
+					/>
 				{/each}
-			</div>
-		</div>
+			</Grid>
+		</Card>
 	{/each}
-</section>
+</Section>
 
 <!-- Spacing Tokens Section -->
-<section class="section">
+<Section>
 	<h2 class="section-title">spacing tokens</h2>
 	<p class="mb-comfortable text-secondary">
 		systematic spacing scale for consistent layouts and visual rhythm.
 	</p>
 
-	<div class="card">
-		<h3 class="card-title">spacing scale</h3>
-		<div style="margin-top: 1rem;">
-			{#each spacingTokens as token, index (token.name)}
-				<div style="display: flex; align-items: centre; margin-bottom: 1rem;">
-					<div 
-						class="spacing-demo" 
-						style="width: {token.value}; height: 1rem; margin-right: 1rem;"
-					></div>
-					<div style="flex: 1;">
-						<code class="font-mono text-sm">--{token.name}</code>
-						<span style="margin: 0 1rem; color: var(--color-green-600);">{token.value}</span>
-						<span class="text-sm text-muted">{token.usage}</span>
-					</div>
-				</div>
+	<Card title="spacing scale" variant="default">
+		<Grid columns={1} gap="normal" class="mt-normal">
+			{#each spacingTokens as token (token.name)}
+				<SpacingDemo 
+					size={token.value}
+					name={token.name}
+					pixels={token.pixels}
+					usage={token.usage}
+				/>
 			{/each}
-		</div>
-	</div>
-</section>
+		</Grid>
+	</Card>
+</Section>
 
 <!-- Typography Tokens Section -->
-<section class="section">
+<Section>
 	<h2 class="section-title">typography tokens</h2>
 
-	<div class="grid grid-2">
-		<div class="card">
-			<h3 class="card-title">font families</h3>
-			<div style="margin-top: 1rem;">
-				<div style="margin-bottom: 1rem;">
+	<Grid columns={2}>
+		<Card title="font families" variant="default">
+			<div class="mt-normal">
+				<div class="mb-normal">
 					<code class="font-mono text-sm">--font-primary</code>
-					<p style="margin-top: 0.5rem; font-family: var(--font-primary);">
+					<p class="mt-tight font-primary">
 						'Cormorant', serif - elegant serif for headings and body text
 					</p>
 				</div>
-				<div style="margin-bottom: 1rem;">
+				<div class="mb-normal">
 					<code class="font-mono text-sm">--font-mono</code>
-					<p style="margin-top: 0.5rem; font-family: var(--font-mono);">
+					<p class="mt-tight font-mono">
 						'JetBrains Mono', monospace - code and technical content
 					</p>
 				</div>
 			</div>
-		</div>
+		</Card>
 
-		<div class="card">
-			<h3 class="card-title">font sizes</h3>
-			<div style="margin-top: 1rem;">
-				<div style="margin-bottom: 0.5rem; font-size: 0.75rem;">
+		<Card title="font sizes" variant="default">
+			<div class="mt-normal">
+				<div class="mb-tight text-xs">
 					<code class="font-mono">text-xs</code> - 0.75rem
 				</div>
-				<div style="margin-bottom: 0.5rem; font-size: 0.875rem;">
+				<div class="mb-tight text-sm">
 					<code class="font-mono">text-sm</code> - 0.875rem
 				</div>
-				<div style="margin-bottom: 0.5rem; font-size: 1rem;">
+				<div class="mb-tight text-base">
 					<code class="font-mono">text-base</code> - 1rem
 				</div>
-				<div style="margin-bottom: 0.5rem; font-size: 1.125rem;">
+				<div class="mb-tight text-lg">
 					<code class="font-mono">text-lg</code> - 1.125rem
 				</div>
-				<div style="margin-bottom: 0.5rem; font-size: 1.25rem;">
+				<div class="mb-tight text-xl">
 					<code class="font-mono">text-xl</code> - 1.25rem
 				</div>
-				<div style="margin-bottom: 0.5rem; font-size: 1.5rem;">
+				<div class="mb-tight text-2xl">
 					<code class="font-mono">text-2xl</code> - 1.5rem
 				</div>
 			</div>
-		</div>
-	</div>
-</section>
+		</Card>
+	</Grid>
+</Section>
 
-<!-- Layout Tokens Section -->
-<section class="section">
-	<h2 class="section-title">layout tokens</h2>
+<!-- Border and Effects Tokens Section -->
+<Section>
+	<h2 class="section-title">border & effects tokens</h2>
 
-	<div class="grid grid-2">
-		<div class="card">
-			<h3 class="card-title">layout dimensions</h3>
-			<div style="margin-top: 1rem;">
-				<div style="margin-bottom: 1rem;">
-					<code class="font-mono text-sm">--nav-width</code>
-					<span style="margin-left: 1rem; color: var(--color-green-600);">20rem</span>
-					<p class="text-sm text-muted">sidebar navigation width</p>
+	<Grid columns={2}>
+		<Card title="border radius" variant="default">
+			<div class="mt-normal">
+				<div class="mb-normal">
+					<div class="radius-demo radius-sm"></div>
+					<code class="font-mono text-sm">--border-radius-sm</code>
 				</div>
-				<div style="margin-bottom: 1rem;">
-					<code class="font-mono text-sm">--content-max-width</code>
-					<span style="margin-left: 1rem; color: var(--color-green-600);">80rem</span>
-					<p class="text-sm text-muted">maximum content container width</p>
-				</div>
-				<div style="margin-bottom: 1rem;">
-					<code class="font-mono text-sm">--content-padding</code>
-					<span style="margin-left: 1rem; color: var(--color-green-600);">1.5rem</span>
-					<p class="text-sm text-muted">default content area padding</p>
-				</div>
-			</div>
-		</div>
-
-		<div class="card">
-			<h3 class="card-title">border and radius</h3>
-			<div style="margin-top: 1rem;">
-				<div style="margin-bottom: 1rem;">
-					<code class="font-mono text-sm">--border-width</code>
-					<span style="margin-left: 1rem; color: var(--color-green-600);">1px</span>
-					<p class="text-sm text-muted">standard border thickness</p>
-				</div>
-				<div style="margin-bottom: 1rem;">
+				<div class="mb-normal">
+					<div class="radius-demo radius-base"></div>
 					<code class="font-mono text-sm">--border-radius-base</code>
-					<span style="margin-left: 1rem; color: var(--color-green-600);">0.25rem</span>
-					<p class="text-sm text-muted">default border radius</p>
 				</div>
-				<div style="margin-bottom: 1rem;">
+				<div class="mb-normal">
+					<div class="radius-demo radius-lg"></div>
 					<code class="font-mono text-sm">--border-radius-lg</code>
-					<span style="margin-left: 1rem; color: var(--color-green-600);">0.5rem</span>
-					<p class="text-sm text-muted">large border radius for cards</p>
 				</div>
 			</div>
-		</div>
-	</div>
-</section>
+		</Card>
 
-<!-- Animation Tokens Section -->
-<section class="section">
-	<h2 class="section-title">animation tokens</h2>
-
-	<div class="card">
-		<h3 class="card-title">transitions and timing</h3>
-		<div class="grid grid-2" style="margin-top: 1rem;">
-			<div>
-				<h4 class="font-semibold mb-compact">transition durations:</h4>
-				<div style="margin-bottom: 0.5rem;">
-					<code class="font-mono text-sm">--transition-fast</code>
-					<span style="margin-left: 1rem; color: var(--color-green-600);">150ms</span>
+		<Card title="shadows" variant="default">
+			<div class="mt-normal">
+				<div class="mb-normal">
+					<div class="shadow-demo shadow-sm"></div>
+					<code class="font-mono text-sm">--shadow-sm</code>
 				</div>
-				<div style="margin-bottom: 0.5rem;">
-					<code class="font-mono text-sm">--transition-base</code>
-					<span style="margin-left: 1rem; color: var(--color-green-600);">200ms</span>
+				<div class="mb-normal">
+					<div class="shadow-demo shadow-md"></div>
+					<code class="font-mono text-sm">--shadow-md</code>
 				</div>
-				<div style="margin-bottom: 0.5rem;">
-					<code class="font-mono text-sm">--transition-slow</code>
-					<span style="margin-left: 1rem; color: var(--color-green-600);">300ms</span>
+				<div class="mb-normal">
+					<div class="shadow-demo shadow-lg"></div>
+					<code class="font-mono text-sm">--shadow-lg</code>
 				</div>
 			</div>
-			<div>
-				<h4 class="font-semibold mb-compact">hover animation classes:</h4>
-				<div style="margin-bottom: 0.5rem;">
-					<code class="font-mono text-sm">.card:hover</code>
-				</div>
-				<div style="margin-bottom: 0.5rem;">
-					<code class="font-mono text-sm">.btn:hover</code>
-				</div>
-				<div style="margin-bottom: 0.5rem;">
-					<code class="font-mono text-sm">.nav-link:hover</code>
-				</div>
-			</div>
-		</div>
-	</div>
-</section>
+		</Card>
+	</Grid>
+</Section>
 
-<!-- Implementation Section -->
-<section class="section">
-	<h2 class="section-title">implementation</h2>
+<!-- Code Examples Section -->
+<Section>
+	<h2 class="section-title">code examples</h2>
 
-	<div class="card">
-		<h3 class="card-title">using design tokens</h3>
-		<pre class="font-mono"><code>{`/* CSS implementation */
-.component {
-  color: var(--color-green-900);
-  background-color: var(--color-cream-50);
-  padding: var(--space-comfortable);
-  border-radius: var(--border-radius-md);
-  transition: all var(--transition-base);
-}
+	<Card title="CSS design tokens" variant="default">
+		<CodeBlock 
+			title="design tokens"
+			code={cssCode}
+			showCopy={true}
+		/>
+	</Card>
+</Section>
 
-/* Responsive design */
-@media (max-width: 768px) {
-  .nav-sidebar {
-    width: var(--nav-width-collapsed);
-  }
-}
+<style>
+	.radius-demo {
+		width: 2rem;
+		height: 2rem;
+		background: var(--color-primary-600);
+		margin-bottom: var(--space-compact);
+	}
 
-/* Custom properties override */
-:root {
-  --custom-accent: var(--color-orange-700);
-  --custom-spacing: var(--space-loose);
-}`}</code></pre>
-	</div>
-</section>
+	.radius-sm {
+		border-radius: var(--border-radius-sm);
+	}
+
+	.radius-base {
+		border-radius: var(--border-radius-base);
+	}
+
+	.radius-lg {
+		border-radius: var(--border-radius-lg);
+	}
+
+	.shadow-demo {
+		width: 3rem;
+		height: 2rem;
+		background: var(--color-secondary-100);
+		margin-bottom: var(--space-compact);
+	}
+
+	.shadow-sm {
+		box-shadow: var(--shadow-sm);
+	}
+
+	.shadow-md {
+		box-shadow: var(--shadow-md);
+	}
+
+	.shadow-lg {
+		box-shadow: var(--shadow-lg);
+	}
+</style>

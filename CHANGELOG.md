@@ -153,4 +153,57 @@ MIT Licence - See [LICENSE](LICENSE) file for details
 
 ---
 
-**Full Changelog**: Initial release v1.0.0 
+**Full Changelog**: Initial release v1.0.0
+
+## [1.1.0] - 2025-01-15
+
+### 🎨 Component Library Enhancements
+
+#### Added
+- **Component Guidelines**
+  - Added comprehensive guidelines for typography, colors, spacing, and animations
+  - Enhanced component documentation with practical usage examples
+  - Standardized component variants and prop types
+  - Improved accessibility documentation for all components
+
+- **Color System**
+  - Added new color presets: Sage Mist, Deep Ocean, and Violet Dusk
+  - Enhanced color configuration system with real-time preview
+  - Improved color scale generation with better contrast ratios
+  - Added semantic color mappings for consistent usage
+
+- **Navigation**
+  - Updated navigation components with improved active states
+  - Enhanced mobile navigation with better touch targets
+  - Added consistent hover and focus states
+  - Improved accessibility for keyboard navigation
+
+- **Card Components**
+  - Standardized card variants (default, featured)
+  - Added interactive card examples with hover states
+  - Improved card accessibility with proper ARIA roles
+  - Enhanced card documentation with usage guidelines
+
+### 🔧 Technical Improvements
+
+#### Configuration System
+- Enhanced color configuration with live preview
+- Improved brand settings management
+- Added validation for color inputs
+- Streamlined configuration updates
+
+#### Documentation
+- Updated component guidelines with comprehensive examples
+- Enhanced code examples with proper syntax highlighting
+- Improved documentation structure and navigation
+- Added practical implementation guides
+
+#### Design Tokens
+- Standardized token naming conventions
+- Enhanced token documentation with usage examples
+- Improved token organization and categorization
+- Added semantic token mappings
+
+---
+
+**Full Changelog**: Version 1.1.0 

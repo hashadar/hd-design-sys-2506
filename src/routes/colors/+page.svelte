@@ -1,4 +1,6 @@
 <script lang="ts">
+	import { PageHeader, Section, Grid, Card, ColorSwatch, CodeBlock } from '$lib/components/index.js';
+
 	// Color palettes
 	const creamPalette = [
 		{ name: 'cream-50', value: '#FEFCF9', usage: 'lightest backgrounds' },
@@ -45,236 +47,8 @@
 		{ name: 'error', value: '#ef4444', usage: 'error states and validation' },
 		{ name: 'info', value: '#3b82f6', usage: 'informational content' }
 	];
-</script>
 
-<svelte:head>
-	<title>colours - hasha dar design system</title>
-	<meta
-		name="description"
-		content="comprehensive colour palette including cream, green, and orange scales with usage guidelines for the hasha dar design system."
-	/>
-</svelte:head>
-
-<!-- Page Header -->
-<header class="page-header">
-	<h1 class="page-title">colours</h1>
-	<p class="page-description">
-		our colour system features warm cream, rich green, and vibrant orange palettes designed for
-		accessibility, harmony, and elegant interfaces.
-	</p>
-</header>
-
-<!-- Color Philosophy Section -->
-<section class="section">
-	<h2 class="section-title">colour philosophy</h2>
-
-	<div class="grid grid-3">
-		<div class="card">
-			<h3 class="card-title">accessibility first</h3>
-			<p class="card-description">
-				all colour combinations meet WCAG 2.1 AA standards for contrast ratios, ensuring readable and
-				inclusive interfaces for all users.
-			</p>
-		</div>
-
-		<div class="card">
-			<h3 class="card-title">natural harmony</h3>
-			<p class="card-description">
-				inspired by natural elements - warm cream like sand, rich green like forest foliage, vibrant
-				orange like autumn leaves.
-			</p>
-		</div>
-
-		<div class="card">
-			<h3 class="card-title">systematic scaling</h3>
-			<p class="card-description">
-				each colour has a complete 50-900 scale providing flexibility whilst maintaining consistency
-				across all interface elements.
-			</p>
-		</div>
-	</div>
-</section>
-
-<!-- Cream Palette Section -->
-<section class="section">
-	<h2 class="section-title">cream palette</h2>
-	<p class="mb-comfortable text-secondary">
-		warm, neutral tones for backgrounds, surfaces, and subtle interface elements.
-	</p>
-
-	<div class="grid-4 grid">
-		{#each creamPalette as color, index (color.name)}
-			<div class="card">
-				<div
-					class="color-swatch"
-					style="background-color: {color.value}; width: 100%; height: 4rem; margin-bottom: 1rem;"
-					title="{color.name}: {color.value}"
-				></div>
-				<h4 class="card-title font-mono text-sm">{color.name}</h4>
-				<p class="mb-compact font-mono text-xs">{color.value}</p>
-				<p class="card-description text-xs">{color.usage}</p>
-			</div>
-		{/each}
-	</div>
-</section>
-
-<!-- Green Palette Section -->
-<section class="section">
-	<h2 class="section-title">green palette</h2>
-	<p class="mb-comfortable text-secondary">
-		earthy green tones for primary actions, text, and nature-inspired elements.
-	</p>
-
-	<div class="grid-4 grid">
-		{#each greenPalette as color, index (color.name)}
-			<div class="card">
-				<div
-					class="color-swatch"
-					style="background-color: {color.value}; width: 100%; height: 4rem; margin-bottom: 1rem;"
-					title="{color.name}: {color.value}"
-				></div>
-				<h4 class="card-title font-mono text-sm">{color.name}</h4>
-				<p class="mb-compact font-mono text-xs">{color.value}</p>
-				<p class="card-description text-xs">{color.usage}</p>
-			</div>
-		{/each}
-	</div>
-</section>
-
-<!-- Orange Palette Section -->
-<section class="section">
-	<h2 class="section-title">orange palette</h2>
-	<p class="mb-comfortable text-secondary">
-		vibrant orange tones for accents, links, and attention-drawing elements.
-	</p>
-
-	<div class="grid-4 grid">
-		{#each orangePalette as color, index (color.name)}
-			<div class="card">
-				<div
-					class="color-swatch"
-					style="background-color: {color.value}; width: 100%; height: 4rem; margin-bottom: 1rem;"
-					title="{color.name}: {color.value}"
-				></div>
-				<h4 class="card-title font-mono text-sm">{color.name}</h4>
-				<p class="mb-compact font-mono text-xs">{color.value}</p>
-				<p class="card-description text-xs">{color.usage}</p>
-			</div>
-		{/each}
-	</div>
-</section>
-
-<!-- Semantic Colors Section -->
-<section class="section">
-	<h2 class="section-title">semantic colours</h2>
-	<p class="mb-comfortable text-secondary">
-		purpose-driven colours for states, feedback, and system communications.
-	</p>
-
-	<div class="grid-2 grid">
-		{#each semanticColors as color, index (color.name)}
-			<div class="card">
-				<div
-					class="color-swatch"
-					style="background-color: {color.value}; width: 100%; height: 3rem; margin-bottom: 1rem;"
-					title="{color.name}: {color.value}"
-				></div>
-				<h4 class="card-title font-mono">{color.name}</h4>
-				<p class="text-sm font-mono mb-compact">{color.value}</p>
-				<p class="card-description">{color.usage}</p>
-			</div>
-		{/each}
-	</div>
-</section>
-
-<!-- Usage Guidelines Section -->
-<section class="section">
-	<h2 class="section-title">usage guidelines</h2>
-
-	<div class="grid grid-2">
-		<div class="card">
-			<h3 class="card-title">text colours</h3>
-			<div style="margin-bottom: 1rem;">
-				<p style="color: var(--color-green-900); margin-bottom: 0.5rem;">
-					primary text - green-900
-				</p>
-				<p style="color: var(--color-green-800); margin-bottom: 0.5rem;">
-					secondary text - green-800
-				</p>
-				<p style="color: var(--color-green-700); margin-bottom: 0.5rem;">
-					tertiary text - green-700
-				</p>
-				<p style="color: var(--color-green-500); margin-bottom: 0.5rem;">muted text - green-500</p>
-			</div>
-			<p class="card-description">
-				use darker green shades for text to ensure proper contrast against light backgrounds.
-				reserve orange for links and accents only.
-			</p>
-		</div>
-
-		<div class="card">
-			<h3 class="card-title">background colours</h3>
-			<div style="margin-bottom: 1rem;">
-				<div
-					style="background-color: var(--color-cream-50); padding: 0.5rem; margin-bottom: 0.5rem; border-radius: 4px;"
-				>
-					card backgrounds - cream-50
-				</div>
-				<div
-					style="background-color: var(--color-cream-100); padding: 0.5rem; margin-bottom: 0.5rem; border-radius: 4px;"
-				>
-					page background - cream-100
-				</div>
-				<div
-					style="background-color: var(--color-cream-200); padding: 0.5rem; margin-bottom: 0.5rem; border-radius: 4px;"
-				>
-					hover states - cream-200
-				</div>
-			</div>
-			<p class="card-description">
-				layer cream tones to create depth and hierarchy. use lighter shades for backgrounds and
-				progressively darker for interactive states.
-			</p>
-		</div>
-	</div>
-</section>
-
-<!-- Accessibility Section -->
-<section class="section">
-	<h2 class="section-title">accessibility</h2>
-
-	<div class="card">
-		<h3 class="card-title">contrast ratios</h3>
-		<div class="grid grid-2" style="margin-top: 1rem;">
-			<div>
-				<h4 class="font-semibold mb-compact">WCAG AA compliant pairs:</h4>
-				<ul style="padding-left: 1.5rem; line-height: 1.6;">
-					<li>green-900 on cream-100 (12.8:1)</li>
-					<li>green-800 on cream-100 (9.2:1)</li>
-					<li>orange-700 on cream-100 (8.1:1)</li>
-					<li>green-700 on cream-200 (6.4:1)</li>
-				</ul>
-			</div>
-			<div>
-				<h4 class="font-semibold mb-compact">colour-blind considerations:</h4>
-				<ul style="padding-left: 1.5rem; line-height: 1.6;">
-					<li>sufficient contrast without relying on colour alone</li>
-					<li>tested across protanopia, deuteranopia, tritanopia</li>
-					<li>semantic meaning communicated through icons and text</li>
-					<li>distinct visual patterns for different states</li>
-				</ul>
-			</div>
-		</div>
-	</div>
-</section>
-
-<!-- Code Examples Section -->
-<section class="section">
-	<h2 class="section-title">code examples</h2>
-
-	<div class="card">
-		<h3 class="card-title">CSS custom properties</h3>
-		<pre class="font-mono"><code>{`/* Cream Palette */
+	const cssCode = `/* Cream Palette */
 --color-cream-50: #FEFCF9;
 --color-cream-100: #FDFBF7;
 --color-cream-500: #F2E8D8;
@@ -295,6 +69,241 @@
 /* Usage */
 .text-primary { color: var(--color-green-900); }
 .text-accent { color: var(--color-orange-700); }
-.bg-surface { background: var(--color-cream-50); }`}</code></pre>
-	</div>
-</section>
+.bg-surface { background: var(--color-cream-50); }`;
+</script>
+
+<svelte:head>
+	<title>colours - hasha dar design system</title>
+	<meta
+		name="description"
+		content="comprehensive colour palette including cream, green, and orange scales with usage guidelines for the hasha dar design system."
+	/>
+</svelte:head>
+
+<PageHeader 
+	title="colours"
+	description="our colour system features warm cream, rich green, and vibrant orange palettes designed for accessibility, harmony, and elegant interfaces."
+/>
+
+<!-- Color Philosophy Section -->
+<Section>
+	<h2 class="section-title">colour philosophy</h2>
+
+	<Grid columns={3}>
+		<Card title="accessibility first" variant="featured">
+			<p class="card-description">
+				all colour combinations meet WCAG 2.1 AA standards for contrast ratios, ensuring readable and
+				inclusive interfaces for all users.
+			</p>
+		</Card>
+
+		<Card title="natural harmony" variant="featured">
+			<p class="card-description">
+				inspired by natural elements - warm cream like sand, rich green like forest foliage, vibrant
+				orange like autumn leaves.
+			</p>
+		</Card>
+
+		<Card title="systematic scaling" variant="featured">
+			<p class="card-description">
+				each colour has a complete 50-900 scale providing flexibility whilst maintaining consistency
+				across all interface elements.
+			</p>
+		</Card>
+	</Grid>
+</Section>
+
+<!-- Cream Palette Section -->
+<Section>
+	<h2 class="section-title">cream palette</h2>
+	<p class="mb-comfortable text-secondary">
+		warm, neutral tones for backgrounds, surfaces, and subtle interface elements.
+	</p>
+
+	<Grid columns={4}>
+		{#each creamPalette as color (color.name)}
+			<Card variant="default">
+				<ColorSwatch 
+					color={color.value}
+					name={color.name}
+					size="lg"
+					showLabel={true}
+					showValue={true}
+					usage={color.usage}
+				/>
+			</Card>
+		{/each}
+	</Grid>
+</Section>
+
+<!-- Green Palette Section -->
+<Section>
+	<h2 class="section-title">green palette</h2>
+	<p class="mb-comfortable text-secondary">
+		earthy green tones for primary actions, text, and nature-inspired elements.
+	</p>
+
+	<Grid columns={4}>
+		{#each greenPalette as color (color.name)}
+			<Card variant="default">
+				<ColorSwatch 
+					color={color.value}
+					name={color.name}
+					size="lg"
+					showLabel={true}
+					showValue={true}
+					usage={color.usage}
+				/>
+			</Card>
+		{/each}
+	</Grid>
+</Section>
+
+<!-- Orange Palette Section -->
+<Section>
+	<h2 class="section-title">orange palette</h2>
+	<p class="mb-comfortable text-secondary">
+		vibrant orange tones for accents, links, and attention-drawing elements.
+	</p>
+
+	<Grid columns={4}>
+		{#each orangePalette as color (color.name)}
+			<Card variant="default">
+				<ColorSwatch 
+					color={color.value}
+					name={color.name}
+					size="lg"
+					showLabel={true}
+					showValue={true}
+					usage={color.usage}
+				/>
+			</Card>
+		{/each}
+	</Grid>
+</Section>
+
+<!-- Semantic Colors Section -->
+<Section>
+	<h2 class="section-title">semantic colours</h2>
+	<p class="mb-comfortable text-secondary">
+		purpose-driven colours for states, feedback, and system communications.
+	</p>
+
+	<Grid columns={2}>
+		{#each semanticColors as color (color.name)}
+			<Card variant="featured">
+				<ColorSwatch 
+					color={color.value}
+					name={color.name}
+					size="lg"
+					showLabel={true}
+					showValue={true}
+					usage={color.usage}
+				/>
+			</Card>
+		{/each}
+	</Grid>
+</Section>
+
+<!-- Usage Guidelines Section -->
+<Section>
+	<h2 class="section-title">usage guidelines</h2>
+
+	<Grid columns={2}>
+		<Card title="text colours" variant="default">
+			<div class="text-examples">
+				<p class="text-primary mb-normal">
+					primary text - green-900
+				</p>
+				<p class="text-secondary mb-normal">
+					secondary text - green-800
+				</p>
+				<p class="text-tertiary mb-normal">
+					tertiary text - green-700
+				</p>
+				<p class="text-muted mb-normal">
+					muted text - green-500
+				</p>
+			</div>
+			<p class="card-description">
+				use darker green shades for text to ensure proper contrast against light backgrounds.
+				reserve orange for links and accents only.
+			</p>
+		</Card>
+
+		<Card title="background colours" variant="default">
+			<div class="background-examples">
+				<div class="bg-surface mb-normal">
+					card backgrounds - cream-50
+				</div>
+				<div class="bg-page mb-normal">
+					page background - cream-100
+				</div>
+				<div class="bg-hover mb-normal">
+					hover states - cream-200
+				</div>
+			</div>
+			<p class="card-description">
+				layer cream tones to create depth and hierarchy. use lighter shades for backgrounds and
+				progressively darker for interactive states.
+			</p>
+		</Card>
+	</Grid>
+</Section>
+
+<!-- Code Examples Section -->
+<Section>
+	<h2 class="section-title">code examples</h2>
+
+	<Card title="CSS custom properties" variant="default">
+		<CodeBlock 
+			title="color utilities"
+			code={cssCode}
+			showCopy={true}
+		/>
+	</Card>
+</Section>
+
+<style>
+	.text-examples {
+		margin-bottom: var(--space-normal);
+	}
+
+	.text-primary {
+		color: var(--color-green-900);
+	}
+
+	.text-secondary {
+		color: var(--color-green-800);
+	}
+
+	.text-tertiary {
+		color: var(--color-green-700);
+	}
+
+	.text-muted {
+		color: var(--color-green-500);
+	}
+
+	.background-examples {
+		margin-bottom: var(--space-normal);
+	}
+
+	.bg-surface {
+		background-color: var(--color-cream-50);
+		padding: var(--space-normal);
+		border-radius: var(--border-radius-base);
+	}
+
+	.bg-page {
+		background-color: var(--color-cream-100);
+		padding: var(--space-normal);
+		border-radius: var(--border-radius-base);
+	}
+
+	.bg-hover {
+		background-color: var(--color-cream-200);
+		padding: var(--space-normal);
+		border-radius: var(--border-radius-base);
+	}
+</style>

@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { PageHeader, Section, Grid, Card, CodeBlock } from '$lib/components/index.js';
 	// Typography scales and examples
 	const fontSizes = [
 		{ name: 'text-xs', size: '0.75rem', example: 'small captions and metadata' },
@@ -28,158 +29,157 @@
 	/>
 </svelte:head>
 
-<!-- Page Header -->
-<header class="page-header">
-	<h1 class="page-title">typography</h1>
-	<p class="page-description">
-		our typography system uses elegant fonts and systematic sizing to create clear hierarchy and
-		excellent readability across all interfaces.
-	</p>
-</header>
+<PageHeader
+	title="typography"
+	description="our typography system uses elegant fonts and systematic sizing to create clear hierarchy and excellent readability across all interfaces."
+/>
 
 <!-- Font Families Section -->
-<section class="section">
+<Section>
 	<h2 class="section-title">font families</h2>
 
-	<div class="grid grid-2">
-		<div class="card">
-			<h3 class="card-title font-primary">Cormorant</h3>
+	<Grid columns={2}>
+		<Card title="Cormorant" variant="featured">
 			<p class="card-description">
 				our primary typeface for headings, body text, and most content. elegant serif with excellent
 				readability and character.
 			</p>
 			<div class="typography-sample">
-				<p class="font-primary" style="font-size: 1.5rem; margin-bottom: 0.5rem;">
+				<p class="font-primary text-2xl mb-normal">
 					the quick brown fox jumps
 				</p>
 				<p class="font-primary">abcdefghijklmnopqrstuvwxyz</p>
 				<p class="font-primary">ABCDEFGHIJKLMNOPQRSTUVWXYZ</p>
 				<p class="font-primary">1234567890 !@#$%^&*()</p>
 			</div>
-		</div>
+		</Card>
 
-		<div class="card">
-			<h3 class="card-title font-mono">JetBrains Mono</h3>
+		<Card title="JetBrains Mono" variant="featured">
 			<p class="card-description">
 				monospace font for code blocks, technical content, and data displays. optimized for
 				programming with excellent character distinction.
 			</p>
 			<div class="typography-sample">
-				<p class="font-mono" style="font-size: 1.5rem; margin-bottom: 0.5rem;">
+				<p class="font-mono text-2xl mb-normal">
 					const hello = world;
 				</p>
 				<p class="font-mono">abcdefghijklmnopqrstuvwxyz</p>
 				<p class="font-mono">ABCDEFGHIJKLMNOPQRSTUVWXYZ</p>
 				<p class="font-mono">1234567890 !@#$%^&*()</p>
 			</div>
-		</div>
-	</div>
-</section>
+		</Card>
+	</Grid>
+</Section>
 
 <!-- Font Sizes Section -->
-<section class="section">
+<Section>
 	<h2 class="section-title">font sizes</h2>
 	<p class="mb-comfortable text-secondary">
 		systematic font sizing based on a modular scale for consistent hierarchy.
 	</p>
 
-	<div class="grid-2 grid">
-		{#each fontSizes as size, index (size.name)}
-			<div class="typography-sample">
-				<div class={size.name} style="margin-bottom: 0.5rem; color: var(--color-green-900);">
-					{size.size} - {size.example}
+	<Grid columns={2}>
+		{#each fontSizes as size}
+			<Card title={size.name} variant="default">
+				<div class="typography-sample">
+					<div class={size.name} style="color: var(--color-foreground);">
+						{size.size} - {size.example}
+					</div>
+					<code class="text-sm font-mono mt-tight">.{size.name}</code>
 				</div>
-				<code class="text-sm">.{size.name}</code>
-			</div>
+			</Card>
 		{/each}
-	</div>
-</section>
+	</Grid>
+</Section>
 
 <!-- Font Weights Section -->
-<section class="section">
+<Section>
 	<h2 class="section-title">font weights</h2>
 	<p class="mb-comfortable text-secondary">
 		varied font weights to establish hierarchy and emphasis within content.
 	</p>
 
-	<div class="grid-2 grid">
-		{#each fontWeights as weight, index (weight.name)}
-			<div class="typography-sample">
-				<div class="{weight.name} text-xl" style="margin-bottom: 0.5rem; color: var(--color-green-900);">
-					{weight.weight} - {weight.example}
+	<Grid columns={2}>
+		{#each fontWeights as weight}
+			<Card title={weight.name} variant="default">
+				<div class="typography-sample">
+					<div class="{weight.name} text-xl" style="color: var(--color-foreground);">
+						{weight.weight} - {weight.example}
+					</div>
+					<code class="text-sm font-mono mt-tight">.{weight.name}</code>
 				</div>
-				<code class="text-sm">.{weight.name}</code>
-			</div>
+			</Card>
 		{/each}
-	</div>
-</section>
+	</Grid>
+</Section>
 
 <!-- Typography Hierarchy Section -->
-<section class="section">
+<Section>
 	<h2 class="section-title">heading hierarchy</h2>
 	<p class="mb-comfortable text-secondary">
 		semantic heading structure with consistent styling and spacing.
 	</p>
 
-	<div class="card">
-		<h1 style="margin-bottom: 1rem;">heading level 1 - page titles</h1>
-		<h2 style="margin-bottom: 1rem;">heading level 2 - section titles</h2>
-		<h3 style="margin-bottom: 1rem;">heading level 3 - subsection titles</h3>
-		<h4 style="margin-bottom: 1rem;">heading level 4 - component titles</h4>
-		<h5 style="margin-bottom: 1rem;">heading level 5 - small headings</h5>
-		<h6 style="margin-bottom: 1rem;">heading level 6 - micro headings</h6>
+	<Card title="heading levels" variant="featured">
+		<div class="typography-hierarchy">
+			<h1 class="mb-normal">heading level 1 - page titles</h1>
+			<h2 class="mb-normal">heading level 2 - section titles</h2>
+			<h3 class="mb-normal">heading level 3 - subsection titles</h3>
+			<h4 class="mb-normal">heading level 4 - component titles</h4>
+			<h5 class="mb-normal">heading level 5 - small headings</h5>
+			<h6 class="mb-normal">heading level 6 - micro headings</h6>
 
-		<p>
-			this is regular paragraph text that follows the heading hierarchy. it demonstrates the visual
-			relationship between headings and body text, showing how the typographic scale creates clear
-			information architecture.
-		</p>
-	</div>
-</section>
+			<p class="mt-normal">
+				this is regular paragraph text that follows the heading hierarchy. it demonstrates the visual
+				relationship between headings and body text, showing how the typographic scale creates clear
+				information architecture.
+			</p>
+		</div>
+	</Card>
+</Section>
 
 <!-- Usage Guidelines Section -->
-<section class="section">
+<Section>
 	<h2 class="section-title">usage guidelines</h2>
 
-	<div class="grid grid-2">
-		<div class="card">
-			<h3 class="card-title">primary font</h3>
+	<Grid columns={2}>
+		<Card title="primary font" variant="default">
 			<p class="card-description">
 				use Cormorant for all headings, body text, UI labels, and general content. its elegant serif
 				design provides excellent readability and sophisticated character that aligns with our
 				design principles.
 			</p>
-			<ul style="margin-top: 1rem; padding-left: 1.5rem; color: var(--color-green-700);">
+			<ul class="usage-list">
 				<li>page and section headings</li>
 				<li>body text and paragraphs</li>
 				<li>navigation and UI elements</li>
 				<li>buttons and interactive text</li>
 			</ul>
-		</div>
+		</Card>
 
-		<div class="card">
-			<h3 class="card-title">monospace font</h3>
+		<Card title="monospace font" variant="default">
 			<p class="card-description">
 				use JetBrains Mono exclusively for code, technical content, and data that requires monospace
 				formatting. avoid using it for regular content as it reduces readability for extended text.
 			</p>
-			<ul style="margin-top: 1rem; padding-left: 1.5rem; color: var(--color-green-700);">
+			<ul class="usage-list">
 				<li>code blocks and snippets</li>
 				<li>technical documentation</li>
 				<li>data tables and numbers</li>
 				<li>terminal or console output</li>
 			</ul>
-		</div>
-	</div>
-</section>
+		</Card>
+	</Grid>
+</Section>
 
 <!-- Code Examples Section -->
-<section class="section">
+<Section>
 	<h2 class="section-title">code examples</h2>
 
-	<div class="card">
-		<h3 class="card-title">CSS font utilities</h3>
-		<pre class="font-mono"><code>{`/* Font families */
+	<Card title="CSS font utilities" variant="default">
+		<CodeBlock 
+			title="font utilities"
+			code={`/* Font families */
 .font-primary { font-family: 'Cormorant', serif; }
 .font-mono { font-family: 'JetBrains Mono', monospace; }
 
@@ -198,6 +198,38 @@
 .font-normal { font-weight: 400; }
 .font-medium { font-weight: 500; }
 .font-semibold { font-weight: 600; }
-.font-bold { font-weight: 700; }`}</code></pre>
-	</div>
-</section>
+.font-bold { font-weight: 700; }`}
+			showCopy={true}
+		/>
+	</Card>
+</Section>
+
+<style>
+	.typography-sample {
+		background-color: var(--color-muted);
+		padding: var(--space-normal);
+		border-radius: var(--border-radius-base);
+		border: 1px solid var(--color-border);
+	}
+
+	.typography-hierarchy {
+		background-color: var(--color-muted);
+		padding: var(--space-normal);
+		border-radius: var(--border-radius-base);
+		border: 1px solid var(--color-border);
+	}
+
+	.usage-list {
+		margin-top: var(--space-normal);
+		padding-left: var(--space-comfortable);
+		color: var(--color-muted-foreground);
+	}
+
+	.usage-list li {
+		margin-bottom: var(--space-tight);
+	}
+
+	.usage-list li:last-child {
+		margin-bottom: 0;
+	}
+</style>

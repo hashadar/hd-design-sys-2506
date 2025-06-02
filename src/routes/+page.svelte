@@ -1,203 +1,212 @@
 <script lang="ts">
-	// No additional imports needed for basic page
+	import { PageHeader, Section, Grid, Card, ColorSwatch, SpacingDemo, Hero, Button } from '$lib/components/index.js';
 </script>
 
 <svelte:head>
-	<title>hasha dar design system - overview</title>
+	<title>hasha dar design system</title>
 	<meta
 		name="description"
-		content="a comprehensive design system for creating elegant, accessible, and consistent user interfaces by hasha dar."
+		content="minimal, elegant design system featuring cream, green, and orange colour palettes with comprehensive components, typography, and spacing guidelines."
 	/>
 </svelte:head>
 
-<!-- Page Header -->
-<header class="page-header">
-	<h1 class="page-title">hasha dar design system</h1>
-	<p class="page-description">
-		a comprehensive design system and methodology guide for creating elegant, accessible, and
-		consistent user interfaces. built with design tokens, systematic spacing, and thoughtful
-		typography for modern web experiences.
-	</p>
-</header>
-
-<!-- Design Foundations Section -->
-<section class="section">
-	<h2 class="section-title">design foundations</h2>
-
-	<div class="grid grid-2">
-		<article class="card">
-			<h3 class="card-title">typography</h3>
-			<p class="card-description">
-				our type system uses Cormorant for elegant headings and body text, paired with JetBrains
-				Mono for code and technical content. built on a modular scale for consistent hierarchy and
-				rhythm.
-			</p>
-			<a href="/typography" class="card-link">explore typography →</a>
-		</article>
-
-		<article class="card">
-			<h3 class="card-title">colours</h3>
-			<p class="card-description">
-				a carefully crafted palette featuring warm cream, rich dark green, and vibrant dark orange.
-				each colour has a full scale from light to dark, ensuring accessibility and visual harmony
-				across all interfaces.
-			</p>
-			<a href="/colors" class="card-link">explore colours →</a>
-		</article>
-
-		<article class="card">
-			<h3 class="card-title">spacing</h3>
-			<p class="card-description">
-				a systematic spacing scale ensures consistent and harmonious layouts. minimal padding and
-				margins create a clean, elegant aesthetic whilst maintaining excellent readability and visual
-				flow.
-			</p>
-			<a href="/spacing" class="card-link">explore spacing →</a>
-		</article>
-
-		<article class="card">
-			<h3 class="card-title">components</h3>
-			<p class="card-description">
-				built with Bits UI, our components are accessible, customisable, and follow design system
-				principles. each component is documented with usage examples, guidelines, and best
-				practices.
-			</p>
-			<a href="/components" class="card-link">explore components →</a>
-		</article>
-	</div>
-</section>
+<Hero 
+	title="hasha dar design system"
+	subtitle="design methodology & component library"
+	description="minimal, elegant design system featuring harmonious colour palettes, systematic spacing, and thoughtfully crafted components for modern web interfaces."
+	cta={{
+		text: "explore components",
+		href: "/components",
+		variant: "primary"
+	}}
+	layout="left"
+/>
 
 <!-- Design Principles Section -->
-<section class="section">
+<Section>
 	<h2 class="section-title">design principles</h2>
+	<p class="text-secondary mb-comfortable">
+		our design philosophy centres on simplicity, accessibility, and natural harmony to create
+		interfaces that feel both elegant and functional.
+	</p>
 
-	<div class="grid grid-3">
-		<div class="card">
-			<h3 class="card-title">simplicity</h3>
-			<p class="card-description">
-				clean, minimal design with purposeful use of space. every element serves a clear function
-				and contributes meaningfully to the overall user experience and interface clarity.
+	<Grid columns={3}>
+		<Card title="minimal elegance">
+			<p>
+				clean, uncluttered interfaces that prioritise content and user experience over decorative
+				elements, whilst maintaining visual interest through thoughtful use of colour and spacing.
 			</p>
-		</div>
+		</Card>
 
-		<div class="card">
-			<h3 class="card-title">consistency</h3>
-			<p class="card-description">
-				systematic approach to design tokens, spacing, and typography ensures consistency across all
-				components and layouts. predictable patterns enhance usability and development efficiency.
+		<Card title="accessibility first">
+			<p>
+				designed with inclusivity at its core, ensuring all users can access and navigate our
+				interfaces regardless of ability, device, or context of use.
 			</p>
-		</div>
+		</Card>
 
-		<div class="card">
-			<h3 class="card-title">accessibility</h3>
-			<p class="card-description">
-				built with accessibility at its core, featuring proper contrast ratios, semantic HTML
-				structure, keyboard navigation support, and screen reader compatibility for inclusive user
-				experiences.
+		<Card title="systematic approach">
+			<p>
+				consistent design tokens, component patterns, and naming conventions create a cohesive
+				system that scales effortlessly across projects and teams.
 			</p>
-		</div>
-	</div>
-</section>
+		</Card>
+	</Grid>
+</Section>
 
-<!-- Design Tokens Preview -->
-<section class="section">
+<!-- Design Tokens Section -->
+<Section>
 	<h2 class="section-title">design tokens</h2>
 	<p class="text-secondary mb-comfortable">
 		our design system is built on a foundation of design tokens that ensure consistency and enable
 		systematic design decisions across all touchpoints.
 	</p>
 
-	<div class="grid grid-3">
-		<div class="card">
-			<h3 class="card-title">colour tokens</h3>
+	<Grid columns={3}>
+		<Card title="colour tokens">
 			<div style="display: flex; gap: 0.25rem; margin-bottom: 0.75rem;">
-				<div
-					class="color-swatch"
-					style="background-color: var(--color-cream-500);"
-					title="cream palette"
-				></div>
-				<div
-					class="color-swatch"
-					style="background-color: var(--color-green-800);"
-					title="green palette"
-				></div>
-				<div
-					class="color-swatch"
-					style="background-color: var(--color-orange-700);"
-					title="orange palette"
-				></div>
+				<ColorSwatch 
+					color="var(--color-cream-500)"
+					name="cream palette"
+					size="md"
+				/>
+				<ColorSwatch 
+					color="var(--color-green-800)"
+					name="green palette"
+					size="md"
+				/>
+				<ColorSwatch 
+					color="var(--color-orange-700)"
+					name="orange palette"
+					size="md"
+				/>
 			</div>
-			<p class="card-description">
+			<p>
 				cream, dark green, and dark orange palettes with semantic naming and comprehensive
 				accessibility considerations for all use cases.
 			</p>
-		</div>
+		</Card>
 
-		<div class="card">
-			<h3 class="card-title">spacing scale</h3>
+		<Card title="spacing scale">
 			<div style="display: flex; align-items: end; gap: 0.125rem; margin-bottom: 0.75rem;">
-				<div
-					class="spacing-demo"
-					style="width: 0.5rem; height: 0.25rem;"
-					title="tight spacing"
-				></div>
-				<div
-					class="spacing-demo"
-					style="width: 0.5rem; height: 0.5rem;"
-					title="compact spacing"
-				></div>
-				<div
-					class="spacing-demo"
-					style="width: 0.5rem; height: 0.75rem;"
-					title="normal spacing"
-				></div>
-				<div
-					class="spacing-demo"
-					style="width: 0.5rem; height: 1rem;"
-					title="comfortable spacing"
-				></div>
-				<div
-					class="spacing-demo"
-					style="width: 0.5rem; height: 1.5rem;"
-					title="loose spacing"
-				></div>
+				<SpacingDemo size="0.25rem" showLabel={false} orientation="vertical" />
+				<SpacingDemo size="0.5rem" showLabel={false} orientation="vertical" />
+				<SpacingDemo size="0.75rem" showLabel={false} orientation="vertical" />
+				<SpacingDemo size="1rem" showLabel={false} orientation="vertical" />
+				<SpacingDemo size="1.5rem" showLabel={false} orientation="vertical" />
 			</div>
-			<p class="card-description">
+			<p>
 				systematic spacing based on a mathematical scale for harmonious layouts and consistent
 				rhythm throughout the interface design.
 			</p>
-		</div>
+		</Card>
 
-		<div class="card">
-			<h3 class="card-title">typography scale</h3>
-			<div style="margin-bottom: 0.75rem; line-height: 1.3;">
-				<div style="font-size: 0.75rem;">small text</div>
-				<div style="font-size: 1rem;">base text</div>
-				<div style="font-size: 1.25rem;">large text</div>
-				<div style="font-size: 1.5rem;">extra large</div>
+		<Card title="typography system">
+			<div style="margin-bottom: 0.75rem;">
+				<div class="text-2xl font-primary mb-tight">Cormorant</div>
+				<div class="text-sm font-mono">JetBrains Mono</div>
 			</div>
-			<p class="card-description">
-				modular typography scale using Cormorant for elegant text and JetBrains Mono for code,
-				creating clear hierarchy and readability.
+			<p>
+				elegant serif typography paired with technical monospace fonts, creating hierarchy and
+				personality whilst maintaining excellent readability across all contexts.
 			</p>
-		</div>
-	</div>
-</section>
+		</Card>
+	</Grid>
+</Section>
 
-<!-- Call to Action -->
-<section class="section">
-	<div class="card" style="text-align: center; padding: 2rem;">
-		<h2 class="card-title" style="margin-bottom: 1rem; font-size: 1.75rem;">start building</h2>
-		<p
-			class="card-description"
-			style="margin-bottom: 1.5rem; max-width: 32rem; margin-left: auto; margin-right: auto;"
+<!-- Component Showcase Section -->
+<Section>
+	<h2 class="section-title">component library</h2>
+	<p class="text-secondary mb-comfortable">
+		our component library provides consistent, accessible, and flexible building blocks for creating
+		modern web interfaces with minimal effort.
+	</p>
+
+	<Grid columns={2}>
+		<Card title="interface components">
+			<div class="mb-comfortable">
+				<Button variant="primary" class="mr-compact">Primary</Button>
+				<Button variant="secondary" class="mr-compact">Secondary</Button>
+				<Button variant="accent">Accent</Button>
+			</div>
+			<p>
+				buttons, cards, forms, and navigation elements built with accessibility in mind and designed
+				to work seamlessly together across different contexts.
+			</p>
+		</Card>
+
+		<Card title="layout system">
+			<div class="mb-comfortable">
+				<div class="grid-demo-preview">
+					<div class="grid-demo-item"></div>
+					<div class="grid-demo-item"></div>
+					<div class="grid-demo-item"></div>
+				</div>
+			</div>
+			<p>
+				flexible grid systems, containers, and spacing utilities that adapt to different screen
+				sizes whilst maintaining visual consistency and optimal content flow.
+			</p>
+		</Card>
+	</Grid>
+
+	<div style="text-align: center; margin-top: var(--space-spacious);">
+		<Button 
+			variant="primary" 
+			size="lg"
+			href="/components"
 		>
-			explore the components, understand the principles, and start building 
-			beautiful, consistent interfaces with the hasha dar design system.
-		</p>
-		<div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
-			<a href="/components" class="btn btn-primary">view components</a>
-			<a href="/tokens" class="btn btn-secondary">design tokens</a>
-		</div>
+			explore all components
+		</Button>
 	</div>
-</section>
+</Section>
+
+<!-- Getting Started Section -->
+<Section>
+	<h2 class="section-title">getting started</h2>
+
+	<Grid columns={4}>
+		<Card title="colours" href="/colors">
+			<ColorSwatch 
+				color="var(--color-green-500)"
+				size="lg"
+				class="mb-normal"
+			/>
+			<p>explore our carefully crafted colour palettes and accessibility guidelines.</p>
+		</Card>
+
+		<Card title="typography" href="/typography">
+			<div class="text-2xl font-primary mb-normal">Aa</div>
+			<p>discover our typography system and text styling conventions.</p>
+		</Card>
+
+		<Card title="spacing" href="/spacing">
+			<SpacingDemo size="1.5rem" showLabel={false} class="mb-normal" />
+			<p>learn about our systematic approach to spacing and layout rhythm.</p>
+		</Card>
+
+		<Card title="components" href="/components">
+			<Button variant="primary" size="sm" class="mb-normal">Button</Button>
+			<p>browse our complete library of accessible, reusable interface components.</p>
+		</Card>
+	</Grid>
+</Section>
+
+<style>
+	.grid-demo-preview {
+		display: flex;
+		gap: 0.5rem;
+		margin-bottom: 1rem;
+	}
+
+	.grid-demo-item {
+		flex: 1;
+		height: 2rem;
+		background: var(--color-primary-200);
+		border-radius: var(--border-radius-sm);
+	}
+
+	.mr-compact {
+		margin-right: var(--space-compact);
+	}
+</style>

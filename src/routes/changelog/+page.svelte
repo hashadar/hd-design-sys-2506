@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { PageHeader, Section, Grid, Card, CodeBlock, Button } from '$lib/components/index.js';
 	import { changelog, codeBlocks } from '$lib/changelog';
 	
 	// Get the latest changelog entry (first one)
@@ -10,77 +11,79 @@
 	<meta name="description" content="complete changelog documenting all changes and updates to the hasha dar design system." />
 </svelte:head>
 
-<!-- Page Header -->
-<header class="page-header">
-	<h1 class="page-title">changelog</h1>
-	<p class="page-description">
-		complete record of all notable changes, improvements, and additions to the hasha dar design system. 
-		following semantic versioning and keep a changelog standards.
-	</p>
-</header>
+<PageHeader
+	title="changelog"
+	description="complete record of all notable changes, improvements, and additions to the hasha dar design system. following semantic versioning and keep a changelog standards."
+/>
 
 <!-- Version Header -->
-<section class="section">
-	<div class="card" style="border-left: 4px solid var(--color-orange-700);">
-		<div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
-			<h2 class="card-title" style="font-size: 2rem; margin: 0;">
+<Section>
+	<Card variant="featured" class="version-header">
+		<div class="version-header-content">
+			<h1 class="version-title">
 				version {latestEntry.version}
-			</h2>
-			<time class="text-secondary font-mono" style="font-size: 1rem;">
+			</h1>
+			<time class="version-date" datetime={latestEntry.date}>
 				{latestEntry.date}
 			</time>
 		</div>
-		<div class="card-description">
-			<strong>Initial Release</strong> - Complete design system launch with angular design language, 
-			comprehensive component library, and full documentation suite.
-		</div>
-	</div>
-</section>
+		<p class="card-description">
+			<strong>Component Library Enhancements</strong> - Comprehensive updates to the design system with new color presets, 
+			improved navigation, and enhanced component guidelines.
+		</p>
+	</Card>
+</Section>
 
 <!-- Changelog Sections -->
 {#each latestEntry.sections as section (section.title)}
-	<section class="section">
+	<Section>
 		<h2 class="section-title">{section.title}</h2>
 		
-		<div class="grid grid-1">
+		<Grid columns={2}>
 			{#each section.items as item (item.category)}
-				<div class="card">
-					<h3 class="card-title">{item.category}</h3>
-					<ul style="margin: 0; padding-left: 1.25rem; color: var(--color-green-700);">
+				<Card title={item.category} variant="default">
+					<ul class="changelog-list">
 						{#each item.details as detail}
-							<li style="margin-bottom: 0.5rem; line-height: 1.5;">{detail}</li>
+							<li>{detail}</li>
 						{/each}
 					</ul>
-				</div>
+				</Card>
 			{/each}
-		</div>
-	</section>
+		</Grid>
+	</Section>
 {/each}
 
 <!-- Technical Specifications -->
-<section class="section">
-	<h2 class="section-title">🎯 Design Token Specifications</h2>
+<Section>
+	<h2 class="section-title">🎯 design token specifications</h2>
 	
-	<div class="grid grid-2">
-		<div class="card">
-			<h3 class="card-title">Colour Palette</h3>
-			<pre class="font-mono"><code>{codeBlocks.colors}</code></pre>
-		</div>
+	<Grid columns={2}>
+		<Card title="colour palette" variant="default">
+			<CodeBlock 
+				title="colour tokens"
+				code={codeBlocks.colors}
+				showCopy={true}
+			/>
+		</Card>
 		
-		<div class="card">
-			<h3 class="card-title">Spacing Scale</h3>
-			<pre class="font-mono"><code>{codeBlocks.spacing}</code></pre>
-		</div>
-	</div>
-</section>
+		<Card title="spacing scale" variant="default">
+			<CodeBlock 
+				title="spacing tokens"
+				code={codeBlocks.spacing}
+				showCopy={true}
+			/>
+		</Card>
+	</Grid>
+</Section>
 
 <!-- Angular Design Elements -->
-<section class="section">
-	<h2 class="section-title">⚡ Angular Design Elements</h2>
+<Section>
+	<h2 class="section-title">⚡ angular design elements</h2>
 	
-	<div class="card">
-		<h3 class="card-title">CSS Implementation</h3>
-		<pre class="font-mono"><code>{codeBlocks.angular}{`
+	<Card title="CSS implementation" variant="default">
+		<CodeBlock 
+			title="angular design tokens"
+			code={`${codeBlocks.angular}
 
 /* Usage example */
 .angular-element {
@@ -92,64 +95,218 @@
 .angular-element:hover {
   box-shadow: var(--shadow-pincushion-hover);
   transform: scale(0.98);
-}`}</code></pre>
-	</div>
-</section>
+}`}
+			showCopy={true}
+		/>
+	</Card>
+</Section>
 
 <!-- Browser Support -->
-<section class="section">
-	<h2 class="section-title">🌍 Browser Support</h2>
+<Section>
+	<h2 class="section-title">🌍 browser support</h2>
 	
-	<div class="grid grid-2">
-		<div class="card">
-			<h3 class="card-title">Supported Browsers</h3>
-			<ul style="margin: 0; padding-left: 1.25rem; color: var(--color-green-700);">
-				<li style="margin-bottom: 0.5rem;">Chrome 90+ ✓</li>
-				<li style="margin-bottom: 0.5rem;">Firefox 88+ ✓</li>
-				<li style="margin-bottom: 0.5rem;">Safari 14+ ✓</li>
-				<li style="margin-bottom: 0.5rem;">Edge 90+ ✓</li>
+	<Grid columns={2}>
+		<Card title="supported browsers" variant="default">
+			<ul class="support-list">
+				<li>Chrome 90+ ✓</li>
+				<li>Firefox 88+ ✓</li>
+				<li>Safari 14+ ✓</li>
+				<li>Edge 90+ ✓</li>
 			</ul>
-		</div>
+		</Card>
 		
-		<div class="card">
-			<h3 class="card-title">Technology Stack</h3>
-			<ul style="margin: 0; padding-left: 1.25rem; color: var(--color-green-700);">
-				<li style="margin-bottom: 0.5rem;">SvelteKit 2.x with TypeScript</li>
-				<li style="margin-bottom: 0.5rem;">Custom CSS with design tokens</li>
-				<li style="margin-bottom: 0.5rem;">Bits UI 2.4.1 for accessibility</li>
-				<li style="margin-bottom: 0.5rem;">Vite with ESLint and Prettier</li>
+		<Card title="technology stack" variant="default">
+			<ul class="support-list">
+				<li>SvelteKit 2.x with TypeScript</li>
+				<li>Custom CSS with design tokens</li>
+				<li>Bits UI 2.4.1 for accessibility</li>
+				<li>Vite with ESLint and Prettier</li>
 			</ul>
-		</div>
-	</div>
-</section>
+		</Card>
+	</Grid>
+</Section>
 
 <!-- Source of Truth Notice -->
-<section class="section">
-	<div class="card" style="border-left: 4px solid var(--color-green-700);">
-		<h3 class="card-title">📄 Single Source of Truth</h3>
-		<p class="card-description" style="margin-bottom: 1rem;">
+<Section>
+	<Card variant="featured" class="source-notice">
+		<h2 class="card-title">📄 single source of truth</h2>
+		<p class="card-description">
 			This changelog is generated from <code>CHANGELOG.md</code> and synchronized with 
 			<code>src/lib/changelog.ts</code> to maintain consistency. When updating the changelog:
 		</p>
-		<ol style="margin: 0; padding-left: 1.5rem; color: var(--color-green-700);">
-			<li style="margin-bottom: 0.5rem;">Update <code>CHANGELOG.md</code> with new changes</li>
-			<li style="margin-bottom: 0.5rem;">Synchronize data in <code>src/lib/changelog.ts</code></li>
-			<li style="margin-bottom: 0.5rem;">Commit both files to maintain consistency</li>
+		<ol class="source-list">
+			<li>Update <code>CHANGELOG.md</code> with new changes</li>
+			<li>Synchronize data in <code>src/lib/changelog.ts</code></li>
+			<li>Commit both files to maintain consistency</li>
 		</ol>
-	</div>
-</section>
+	</Card>
+</Section>
 
 <!-- Footer Links -->
-<section class="section">
-	<div class="card" style="text-align: center; padding: 2rem;">
-		<h2 class="card-title" style="margin-bottom: 1rem;">related resources</h2>
-		<p class="card-description" style="margin-bottom: 1.5rem;">
+<Section>
+	<Card variant="default" class="footer-links">
+		<h2 class="card-title">related resources</h2>
+		<p class="card-description">
 			explore the design system documentation and source code
 		</p>
-		<div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
-			<a href="/" class="btn btn-primary">design system overview</a>
-			<a href="/components" class="btn btn-secondary">component library</a>
-			<a href="https://github.com/hashadar" target="_blank" rel="noopener" class="btn btn-accent">view source code</a>
+		<div class="link-buttons" role="navigation" aria-label="Related resources">
+			<Button variant="primary" href="/">design system overview</Button>
+			<Button variant="secondary" href="/components">component library</Button>
+			<a 
+				href="https://github.com/hashadar" 
+				target="_blank" 
+				rel="noopener noreferrer" 
+				class="btn btn-accent"
+				aria-label="View source code on GitHub (opens in new tab)"
+			>
+				view source code
+			</a>
 		</div>
-	</div>
-</section> 
+	</Card>
+</Section>
+
+<style>
+	.version-header {
+		border-left: var(--border-width-thick) solid var(--color-accent-600);
+	}
+
+	.version-header-content {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		margin-bottom: var(--space-normal);
+	}
+
+	.version-title {
+		font-size: var(--text-2xl);
+		font-weight: var(--font-weight-semibold);
+		margin: 0;
+		color: var(--color-card-foreground);
+		line-height: var(--line-height-tight);
+	}
+
+	.version-date {
+		font-family: var(--font-mono);
+		font-size: var(--text-base);
+		color: var(--color-muted-foreground);
+	}
+
+	.changelog-list {
+		margin: 0;
+		padding-left: var(--space-comfortable);
+		color: var(--color-card-foreground);
+		list-style-type: disc;
+	}
+
+	.changelog-list li {
+		margin-bottom: var(--space-tight);
+		line-height: var(--line-height-relaxed);
+	}
+
+	.changelog-list li:last-child {
+		margin-bottom: 0;
+	}
+
+	.support-list {
+		margin: 0;
+		padding-left: var(--space-comfortable);
+		color: var(--color-card-foreground);
+		list-style-type: none;
+	}
+
+	.support-list li {
+		margin-bottom: var(--space-tight);
+		display: flex;
+		align-items: center;
+		gap: var(--space-tight);
+	}
+
+	.support-list li:last-child {
+		margin-bottom: 0;
+	}
+
+	.support-list li::before {
+		content: '✓';
+		color: var(--color-accent-600);
+		font-weight: var(--font-weight-bold);
+	}
+
+	.source-notice {
+		border-left: var(--border-width-thick) solid var(--color-primary-600);
+	}
+
+	.source-list {
+		margin: var(--space-normal) 0 0;
+		padding-left: var(--space-loose);
+		color: var(--color-card-foreground);
+		list-style-type: decimal;
+	}
+
+	.source-list li {
+		margin-bottom: var(--space-tight);
+		line-height: var(--line-height-relaxed);
+	}
+
+	.source-list li:last-child {
+		margin-bottom: 0;
+	}
+
+	.source-list code {
+		background: var(--color-muted);
+		padding: var(--space-tight) var(--space-compact);
+		border-radius: var(--border-radius-sm);
+		font-family: var(--font-mono);
+		font-size: var(--text-sm);
+		color: var(--color-card-foreground);
+	}
+
+	.footer-links {
+		text-align: center;
+		padding: var(--space-spacious);
+	}
+
+	.link-buttons {
+		display: flex;
+		gap: var(--space-normal);
+		justify-content: center;
+		flex-wrap: wrap;
+		margin-top: var(--space-loose);
+	}
+
+	/* Ensure external link button matches other buttons */
+	.btn {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		gap: var(--space-compact);
+		padding: var(--space-comfortable) var(--space-loose);
+		border: var(--border-width-thick) solid transparent;
+		border-radius: var(--border-radius-base);
+		font-family: var(--font-primary);
+		font-weight: var(--font-weight-semibold);
+		font-size: var(--text-base);
+		line-height: var(--line-height-normal);
+		text-decoration: none;
+		cursor: pointer;
+		transition: all var(--transition-base);
+		position: relative;
+		overflow: hidden;
+		clip-path: var(--clip-corner);
+		box-shadow: var(--shadow-pincushion);
+	}
+
+	.btn:hover {
+		transform: translateY(-2px);
+		box-shadow: var(--shadow-pincushion-hover), var(--shadow-md);
+	}
+
+	.btn:active {
+		transform: translateY(0);
+		box-shadow: var(--shadow-pincushion);
+	}
+
+	.btn:focus-visible {
+		outline: 2px solid var(--color-ring);
+		outline-offset: 2px;
+	}
+</style> 

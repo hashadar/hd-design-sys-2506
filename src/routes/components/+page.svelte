@@ -1,13 +1,117 @@
 <script lang="ts">
+	import { PageHeader, Section, Grid, Card, Button, CodeBlock } from '$lib/components/index.js';
+	import { siteConfig } from '$lib/stores/config.js';
+
 	// Component examples and guidelines
 	let buttonExamples = [
-		{ variant: 'primary', label: 'primary button', description: 'main call-to-action buttons' },
+		{ 
+			variant: 'primary', 
+			label: 'primary button', 
+			description: 'main call-to-action buttons',
+			guidelines: {
+				typography: 'font-primary, font-semibold, text-sm',
+				colors: 'primary-700 to primary-600 gradient, primary-50 text',
+				spacing: 'normal vertical, loose horizontal padding',
+				animation: 'hover scale 0.98, active scale 0.96, transition-base'
+			}
+		},
 		{
 			variant: 'secondary',
 			label: 'secondary button',
-			description: 'secondary actions and alternatives'
+			description: 'secondary actions and alternatives',
+			guidelines: {
+				typography: 'font-primary, font-semibold, text-sm',
+				colors: 'secondary-200 to secondary-300 gradient, foreground text',
+				spacing: 'normal vertical, loose horizontal padding',
+				animation: 'hover scale 0.98, active scale 0.96, transition-base'
+			}
 		},
-		{ variant: 'accent', label: 'accent button', description: 'accent actions and highlights' }
+		{ 
+			variant: 'accent', 
+			label: 'accent button', 
+			description: 'accent actions and highlights',
+			guidelines: {
+				typography: 'font-primary, font-semibold, text-sm',
+				colors: 'accent-600 to accent-500 gradient, accent-50 text',
+				spacing: 'normal vertical, loose horizontal padding',
+				animation: 'hover scale 0.98, active scale 0.96, transition-base'
+			}
+		}
+	];
+
+	let cardExamples = [
+		{
+			type: 'basic',
+			title: 'basic card',
+			description: 'standard content container with title, description, and optional actions',
+			guidelines: {
+				typography: {
+					title: 'font-primary, font-semibold, text-lg',
+					description: 'font-primary, text-sm, text-muted-foreground'
+				},
+				colors: {
+					background: 'card background (secondary-50)',
+					border: 'border color (secondary-200)',
+					hover: 'secondary-100 background, primary-300 border'
+				},
+				spacing: {
+					padding: 'loose (1.5rem)',
+					gap: 'comfortable (1rem) between elements'
+				},
+				animation: 'hover translateY(-2px) scale(1.01), transition-base'
+			}
+		},
+		{
+			type: 'interactive',
+			title: 'interactive card',
+			description: 'enhanced card with hover animations and visual feedback',
+			guidelines: {
+				typography: {
+					title: 'font-primary, font-semibold, text-lg',
+					description: 'font-primary, text-sm, text-muted-foreground'
+				},
+				colors: {
+					background: 'card background (secondary-50)',
+					border: 'border color (secondary-200)',
+					hover: 'secondary-100 background, accent-600 border, shadow-lg'
+				},
+				spacing: {
+					padding: 'loose (1.5rem)',
+					gap: 'comfortable (1rem) between elements'
+				},
+				animation: 'hover translateY(-2px) scale(1.01), gradient border animation, transition-base'
+			}
+		}
+	];
+
+	let navigationExamples = [
+		{
+			type: 'sidebar',
+			title: 'sidebar navigation',
+			description: 'fixed sidebar with brand area, navigation menu, and footer information',
+			guidelines: {
+				typography: {
+					brand: 'font-primary, font-bold, text-xl',
+					menu: 'font-primary, font-medium, text-sm',
+					footer: 'font-primary, text-xs, text-muted-foreground'
+				},
+				colors: {
+					background: 'secondary-50 to secondary-100 gradient',
+					border: 'border color (secondary-200)',
+					active: 'primary-700 to primary-600 gradient, primary-50 text',
+					hover: 'muted background, foreground text'
+				},
+				spacing: {
+					padding: 'loose (1.5rem)',
+					menuGap: 'tight (0.25rem)',
+					footerMargin: 'comfortable (1rem)'
+				},
+				animation: {
+					hover: 'translateX(4px), transition-base',
+					active: 'translateX(4px), shadow-md'
+				}
+			}
+		}
 	];
 </script>
 
@@ -19,246 +123,192 @@
 	/>
 </svelte:head>
 
-<!-- Page Header -->
-<header class="page-header">
-	<h1 class="page-title">components</h1>
-	<p class="page-description">
-		our component library is built with Bits UI for accessibility and customisation, providing
-		consistent patterns for all interface needs.
-	</p>
-</header>
+<PageHeader
+	title="components"
+	description="our component library is built with Bits UI for accessibility and customisation, providing consistent patterns for all interface needs."
+/>
 
 <!-- Component Philosophy Section -->
-<section class="section">
+<Section>
 	<h2 class="section-title">component philosophy</h2>
 
-	<div class="grid grid-3">
-		<div class="card">
-			<h3 class="card-title">accessibility first</h3>
+	<Grid columns={3}>
+		<Card title="accessibility first">
 			<p class="card-description">
 				every component follows WCAG guidelines with proper ARIA labels, keyboard navigation, and
 				screen reader support built-in.
 			</p>
-		</div>
+		</Card>
 
-		<div class="card">
-			<h3 class="card-title">systematic design</h3>
+		<Card title="systematic design">
 			<p class="card-description">
 				components use design tokens for colours, spacing, and typography, ensuring consistency
 				across the entire interface system.
 			</p>
-		</div>
+		</Card>
 
-		<div class="card">
-			<h3 class="card-title">flexible customisation</h3>
+		<Card title="flexible customisation">
 			<p class="card-description">
 				headless components from Bits UI allow complete styling control whilst maintaining
 				accessibility and behavioural consistency.
 			</p>
-		</div>
-	</div>
-</section>
+		</Card>
+	</Grid>
+</Section>
 
 <!-- Button Components Section -->
-<section class="section">
+<Section>
 	<h2 class="section-title">buttons</h2>
 	<p class="mb-comfortable text-secondary">
 		button components with clear hierarchy and consistent interaction patterns.
 	</p>
 
-	<div class="grid grid-3">
-		{#each buttonExamples as button, index (button.variant)}
-			<div class="card">
-				<h4 class="card-title">{button.label}</h4>
+	<Grid columns={3}>
+		{#each buttonExamples as button}
+			<Card title={button.label}>
 				<p class="card-description mb-comfortable">{button.description}</p>
-				<div style="margin-bottom: 1rem;">
-					<button class="btn btn-{button.variant}">{button.label}</button>
+				<div class="mb-normal">
+					<Button variant={button.variant as "primary" | "secondary" | "accent" | "ghost"}>{button.label}</Button>
 				</div>
-				<code class="text-xs">.btn .btn-{button.variant}</code>
-			</div>
+				
+				<div class="guidelines">
+					<h4 class="text-sm font-medium mb-tight">guidelines</h4>
+					<dl class="text-sm">
+						<dt class="font-medium text-muted-foreground">typography</dt>
+						<dd class="mb-tight">{button.guidelines.typography}</dd>
+						
+						<dt class="font-medium text-muted-foreground">colors</dt>
+						<dd class="mb-tight">{button.guidelines.colors}</dd>
+						
+						<dt class="font-medium text-muted-foreground">spacing</dt>
+						<dd class="mb-tight">{button.guidelines.spacing}</dd>
+						
+						<dt class="font-medium text-muted-foreground">animation</dt>
+						<dd>{button.guidelines.animation}</dd>
+					</dl>
+				</div>
+			</Card>
 		{/each}
-	</div>
-</section>
+	</Grid>
+</Section>
 
 <!-- Card Components Section -->
-<section class="section">
+<Section>
 	<h2 class="section-title">cards</h2>
 	<p class="mb-comfortable text-secondary">
 		content containers with consistent styling and interactive states.
 	</p>
 
-	<div class="grid grid-2">
-		<div class="card">
-			<h3 class="card-title">basic card</h3>
-			<p class="card-description">
-				standard content container with title, description, and optional actions. features subtle
-				hover effects and proper spacing for optimal readability.
-			</p>
-			<a href="#" class="card-link">explore more →</a>
-		</div>
-
-		<div class="card">
-			<h3 class="card-title">interactive card</h3>
-			<p class="card-description">
-				enhanced card with hover animations and visual feedback. includes gradient borders and
-				smooth transitions for engaging user experience.
-			</p>
-			<a href="#" class="card-link">learn more →</a>
-		</div>
-	</div>
-</section>
+	<Grid columns={2}>
+		{#each cardExamples as card}
+			<Card title={card.title} variant={card.type === 'interactive' ? 'featured' : 'default'}>
+				<p class="card-description mb-comfortable">{card.description}</p>
+				
+				<div class="guidelines">
+					<h4 class="text-sm font-medium mb-tight">guidelines</h4>
+					<dl class="text-sm">
+						<dt class="font-medium text-muted-foreground">typography</dt>
+						<dd class="mb-tight">
+							<strong>title:</strong> {card.guidelines.typography.title}<br>
+							<strong>description:</strong> {card.guidelines.typography.description}
+						</dd>
+						
+						<dt class="font-medium text-muted-foreground">colors</dt>
+						<dd class="mb-tight">
+							<strong>background:</strong> {card.guidelines.colors.background}<br>
+							<strong>border:</strong> {card.guidelines.colors.border}<br>
+							<strong>hover:</strong> {card.guidelines.colors.hover}
+						</dd>
+						
+						<dt class="font-medium text-muted-foreground">spacing</dt>
+						<dd class="mb-tight">
+							<strong>padding:</strong> {card.guidelines.spacing.padding}<br>
+							<strong>gap:</strong> {card.guidelines.spacing.gap}
+						</dd>
+						
+						<dt class="font-medium text-muted-foreground">animation</dt>
+						<dd>{card.guidelines.animation}</dd>
+					</dl>
+				</div>
+			</Card>
+		{/each}
+	</Grid>
+</Section>
 
 <!-- Navigation Components Section -->
-<section class="section">
+<Section>
 	<h2 class="section-title">navigation</h2>
+	<p class="mb-comfortable text-secondary">
+		navigation components with consistent styling and interactive states.
+	</p>
 
-	<div class="card">
-		<h3 class="card-title">sidebar navigation</h3>
-		<p class="card-description mb-comfortable">
-			fixed sidebar with brand area, navigation menu, and footer information. includes mobile
-			responsive behaviour and active state indicators.
-		</p>
-
-		<div
-			style="background-color: var(--color-cream-200); padding: 1rem; border-radius: 8px; margin-bottom: 1rem;"
-		>
-			<div
-				style="background-color: var(--color-cream-50); padding: 0.75rem; border-radius: 6px; margin-bottom: 1rem; border-left: 3px solid var(--color-orange-700);"
-			>
-				<strong style="color: var(--color-green-900);">hasha dar design system</strong><br />
-				<small style="color: var(--color-green-600);">design methodology & component library</small>
-			</div>
-
-			<nav style="margin-bottom: 1rem;">
-				<div
-					style="background-color: var(--color-green-800); color: var(--color-cream-100); padding: 0.5rem 0.75rem; border-radius: 4px; margin-bottom: 0.25rem;"
-				>
-					overview
+	{#each navigationExamples as nav}
+		<Card title={nav.title}>
+			<p class="card-description mb-comfortable">{nav.description}</p>
+			
+			<div class="nav-preview mb-normal">
+				<div class="nav-brand">
+					<h3>hasha dar design system</h3>
+					<p>design methodology & component library</p>
 				</div>
-				<div style="padding: 0.5rem 0.75rem; color: var(--color-green-700);">typography</div>
-				<div style="padding: 0.5rem 0.75rem; color: var(--color-green-700);">colours</div>
-				<div style="padding: 0.5rem 0.75rem; color: var(--color-green-700);">spacing</div>
-			</nav>
 
-			<div
-				style="font-size: 0.75rem; color: var(--color-green-500); border-top: 1px solid var(--color-cream-300); padding-top: 0.75rem;"
-			>
-				<strong>version 1.0.0</strong><br />
-				built with Svelte & Bits UI
+				<nav class="nav-menu">
+					<a href="#" class="nav-link active">overview</a>
+					<a href="#" class="nav-link">typography</a>
+					<a href="#" class="nav-link">colours</a>
+					<a href="#" class="nav-link">spacing</a>
+				</nav>
+
+				<div class="nav-footer">
+					<p><strong>version 1.0.0</strong></p>
+					<p>built with Svelte & Bits UI</p>
+				</div>
 			</div>
-		</div>
-
-		<code class="text-xs">.nav-sidebar, .nav-brand, .nav-menu, .nav-footer</code>
-	</div>
-</section>
-
-<!-- Form Components Section -->
-<section class="section">
-	<h2 class="section-title">form elements</h2>
-
-	<div class="grid grid-2">
-		<div class="card">
-			<h3 class="card-title">input styling</h3>
-			<p class="card-description mb-comfortable">
-				consistent input styling with proper focus states and accessibility support.
-			</p>
-
-			<div style="margin-bottom: 1rem;">
-				<label
-					style="display: block; margin-bottom: 0.5rem; font-weight: 500; color: var(--color-green-800);"
-				>
-					email address
-				</label>
-				<input
-					type="email"
-					placeholder="enter your email"
-					style="width: 100%; padding: var(--space-compact) var(--space-normal); border: 1px solid var(--color-cream-400); border-radius: var(--border-radius-md); font-family: inherit; transition: all var(--transition-fast);"
-				/>
+			
+			<div class="guidelines">
+				<h4 class="text-sm font-medium mb-tight">guidelines</h4>
+				<dl class="text-sm">
+					<dt class="font-medium text-muted-foreground">typography</dt>
+					<dd class="mb-tight">
+						<strong>brand:</strong> {nav.guidelines.typography.brand}<br>
+						<strong>menu:</strong> {nav.guidelines.typography.menu}<br>
+						<strong>footer:</strong> {nav.guidelines.typography.footer}
+					</dd>
+					
+					<dt class="font-medium text-muted-foreground">colors</dt>
+					<dd class="mb-tight">
+						<strong>background:</strong> {nav.guidelines.colors.background}<br>
+						<strong>border:</strong> {nav.guidelines.colors.border}<br>
+						<strong>active:</strong> {nav.guidelines.colors.active}<br>
+						<strong>hover:</strong> {nav.guidelines.colors.hover}
+					</dd>
+					
+					<dt class="font-medium text-muted-foreground">spacing</dt>
+					<dd class="mb-tight">
+						<strong>padding:</strong> {nav.guidelines.spacing.padding}<br>
+						<strong>menu gap:</strong> {nav.guidelines.spacing.menuGap}<br>
+						<strong>footer margin:</strong> {nav.guidelines.spacing.footerMargin}
+					</dd>
+					
+					<dt class="font-medium text-muted-foreground">animation</dt>
+					<dd>
+						<strong>hover:</strong> {nav.guidelines.animation.hover}<br>
+						<strong>active:</strong> {nav.guidelines.animation.active}
+					</dd>
+				</dl>
 			</div>
-
-			<div style="margin-bottom: 1rem;">
-				<label
-					style="display: block; margin-bottom: 0.5rem; font-weight: 500; color: var(--color-green-800);"
-				>
-					message
-				</label>
-				<textarea
-					placeholder="your message here..."
-					rows="3"
-					style="width: 100%; padding: var(--space-compact) var(--space-normal); border: 1px solid var(--color-cream-400); border-radius: var(--border-radius-md); font-family: inherit; resize: vertical; transition: all var(--transition-fast);"
-				></textarea>
-			</div>
-		</div>
-
-		<div class="card">
-			<h3 class="card-title">interactive elements</h3>
-			<p class="card-description mb-comfortable">
-				checkboxes, radio buttons, and other form controls with consistent styling.
-			</p>
-
-			<div style="margin-bottom: 1rem;">
-				<label style="display: flex; align-items: center; gap: 0.5rem; cursor: pointer;">
-					<input type="checkbox" style="margin: 0;" />
-					<span>subscribe to updates</span>
-				</label>
-			</div>
-
-			<div style="margin-bottom: 1rem;">
-				<fieldset style="border: none; padding: 0; margin: 0;">
-					<legend style="font-weight: 500; margin-bottom: 0.5rem; color: var(--color-green-800);">
-						preferred contact method
-					</legend>
-					<label
-						style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.25rem; cursor: pointer;"
-					>
-						<input type="radio" name="contact" value="email" style="margin: 0;" />
-						<span>email</span>
-					</label>
-					<label style="display: flex; align-items: center; gap: 0.5rem; cursor: pointer;">
-						<input type="radio" name="contact" value="phone" style="margin: 0;" />
-						<span>phone</span>
-					</label>
-				</fieldset>
-			</div>
-		</div>
-	</div>
-</section>
-
-<!-- Typography Components Section -->
-<section class="section">
-	<h2 class="section-title">typography components</h2>
-
-	<div class="card">
-		<h3 class="card-title">text hierarchy</h3>
-		<p class="card-description mb-comfortable">
-			consistent typography patterns for content structure and readability.
-		</p>
-
-		<div class="typography-sample">
-			<h2 style="margin-bottom: 1rem;">section heading</h2>
-			<p style="margin-bottom: 1rem;">
-				this is a paragraph with normal body text. it demonstrates the standard line height and
-				spacing that creates comfortable reading experiences across all content areas.
-			</p>
-			<p style="margin-bottom: 1rem; color: var(--color-green-600);">
-				this is secondary text with muted colour for supporting information and descriptions that
-				complement the primary content.
-			</p>
-			<p>
-				links within text appear in <a href="#">orange accent colour</a> and maintain proper contrast
-				ratios for accessibility whilst standing out from the surrounding content.
-			</p>
-		</div>
-	</div>
-</section>
+		</Card>
+	{/each}
+</Section>
 
 <!-- Code Examples Section -->
-<section class="section">
+<Section>
 	<h2 class="section-title">implementation guide</h2>
 
-	<div class="card">
-		<h3 class="card-title">Bits UI integration</h3>
-		<pre class="font-mono"><code>{`// Import Bits UI components
+	<Card title="Bits UI integration">
+		<CodeBlock 
+			title="component usage"
+			code={`// Import Bits UI components
 import { Button, Dialog, Accordion } from 'bits-ui';
 
 // Use with custom styling
@@ -276,6 +326,88 @@ import { Button, Dialog, Accordion } from 'bits-ui';
       section content here
     </Accordion.Content>
   </Accordion.Item>
-</Accordion.Root>`}</code></pre>
-	</div>
-</section>
+</Accordion.Root>`}
+			showCopy={true}
+		/>
+	</Card>
+</Section>
+
+<style>
+	.guidelines {
+		background-color: var(--color-muted);
+		padding: var(--space-normal);
+		border-radius: var(--border-radius-base);
+		border: 1px solid var(--color-border);
+	}
+
+	.nav-preview {
+		background-color: var(--color-secondary-50);
+		padding: var(--space-loose);
+		border-radius: var(--border-radius-base);
+		border: 1px solid var(--color-border);
+		display: flex;
+		flex-direction: column;
+		gap: var(--space-comfortable);
+	}
+
+	.nav-brand h3 {
+		color: var(--color-foreground);
+		font-size: 1.25rem;
+		font-weight: 700;
+		margin-bottom: var(--space-tight);
+	}
+
+	.nav-brand p {
+		color: var(--color-muted-foreground);
+		font-size: 0.875rem;
+	}
+
+	.nav-menu {
+		display: flex;
+		flex-direction: column;
+		gap: var(--space-tight);
+	}
+
+	.nav-link {
+		display: block;
+		padding: var(--space-compact) var(--space-normal);
+		color: var(--color-muted-foreground);
+		border-radius: var(--border-radius-base);
+		transition: all var(--transition-base);
+		font-weight: 500;
+		position: relative;
+		overflow: hidden;
+		border-left: 3px solid transparent;
+	}
+
+	.nav-link:hover {
+		background-color: var(--color-muted);
+		color: var(--color-foreground);
+		transform: translateX(4px);
+		box-shadow: var(--shadow-sm);
+		border-left-color: var(--color-accent-600);
+	}
+
+	.nav-link.active {
+		background: linear-gradient(135deg, var(--color-primary-700), var(--color-primary-600));
+		color: var(--color-primary-50);
+		transform: translateX(4px);
+		box-shadow: var(--shadow-md);
+		border-left-color: var(--color-accent-500);
+		clip-path: polygon(0 0, calc(100% - 4px) 0, 100% 4px, 100% 100%, 0 100%);
+	}
+
+	.nav-footer {
+		margin-top: auto;
+		padding-top: var(--space-comfortable);
+		border-top: 1px solid var(--color-border);
+		font-size: 0.75rem;
+		color: var(--color-muted-foreground);
+		line-height: 1.4;
+	}
+
+	.nav-footer p {
+		margin-bottom: var(--space-tight);
+		color: inherit;
+	}
+</style>

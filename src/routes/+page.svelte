@@ -24,29 +24,28 @@
 
 <!-- Design Principles Section -->
 <Section>
-	<h2 class="section-title">design principles</h2>
-	<p class="text-secondary mb-comfortable">
-		our design philosophy centres on simplicity, accessibility, and natural harmony to create
-		interfaces that feel both elegant and functional.
-	</p>
+	<PageHeader 
+		title="design principles"
+		description="our design philosophy centres on simplicity, accessibility, and natural harmony to create interfaces that feel both elegant and functional."
+	/>
 
 	<Grid columns={3}>
-		<Card title="minimal elegance">
-			<p>
+		<Card variant="default" title="minimal elegance">
+			<p class="text-muted-foreground">
 				clean, uncluttered interfaces that prioritise content and user experience over decorative
 				elements, whilst maintaining visual interest through thoughtful use of colour and spacing.
 			</p>
 		</Card>
 
-		<Card title="accessibility first">
-			<p>
+		<Card variant="default" title="accessibility first">
+			<p class="text-muted-foreground">
 				designed with inclusivity at its core, ensuring all users can access and navigate our
 				interfaces regardless of ability, device, or context of use.
 			</p>
 		</Card>
 
-		<Card title="systematic approach">
-			<p>
+		<Card variant="default" title="systematic approach">
+			<p class="text-muted-foreground">
 				consistent design tokens, component patterns, and naming conventions create a cohesive
 				system that scales effortlessly across projects and teams.
 			</p>
@@ -56,15 +55,14 @@
 
 <!-- Design Tokens Section -->
 <Section>
-	<h2 class="section-title">design tokens</h2>
-	<p class="text-secondary mb-comfortable">
-		our design system is built on a foundation of design tokens that ensure consistency and enable
-		systematic design decisions across all touchpoints.
-	</p>
+	<PageHeader 
+		title="design tokens"
+		description="our design system is built on a foundation of design tokens that ensure consistency and enable systematic design decisions across all touchpoints."
+	/>
 
 	<Grid columns={3}>
-		<Card title="colour tokens">
-			<div style="display: flex; gap: 0.25rem; margin-bottom: 0.75rem;">
+		<Card variant="default" title="colour tokens">
+			<div class="color-swatches">
 				<ColorSwatch 
 					color="var(--color-cream-500)"
 					name="cream palette"
@@ -81,32 +79,32 @@
 					size="md"
 				/>
 			</div>
-			<p>
+			<p class="text-muted-foreground">
 				cream, dark green, and dark orange palettes with semantic naming and comprehensive
 				accessibility considerations for all use cases.
 			</p>
 		</Card>
 
-		<Card title="spacing scale">
-			<div style="display: flex; align-items: end; gap: 0.125rem; margin-bottom: 0.75rem;">
+		<Card variant="default" title="spacing scale">
+			<div class="spacing-demo">
 				<SpacingDemo size="0.25rem" showLabel={false} orientation="vertical" />
 				<SpacingDemo size="0.5rem" showLabel={false} orientation="vertical" />
 				<SpacingDemo size="0.75rem" showLabel={false} orientation="vertical" />
 				<SpacingDemo size="1rem" showLabel={false} orientation="vertical" />
 				<SpacingDemo size="1.5rem" showLabel={false} orientation="vertical" />
 			</div>
-			<p>
+			<p class="text-muted-foreground">
 				systematic spacing based on a mathematical scale for harmonious layouts and consistent
 				rhythm throughout the interface design.
 			</p>
 		</Card>
 
-		<Card title="typography system">
-			<div style="margin-bottom: 0.75rem;">
+		<Card variant="default" title="typography system">
+			<div class="typography-preview">
 				<div class="text-2xl font-primary mb-tight">Cormorant</div>
 				<div class="text-sm font-mono">JetBrains Mono</div>
 			</div>
-			<p>
+			<p class="text-muted-foreground">
 				elegant serif typography paired with technical monospace fonts, creating hierarchy and
 				personality whilst maintaining excellent readability across all contexts.
 			</p>
@@ -116,41 +114,38 @@
 
 <!-- Component Showcase Section -->
 <Section>
-	<h2 class="section-title">component library</h2>
-	<p class="text-secondary mb-comfortable">
-		our component library provides consistent, accessible, and flexible building blocks for creating
-		modern web interfaces with minimal effort.
-	</p>
+	<PageHeader 
+		title="component library"
+		description="our component library provides consistent, accessible, and flexible building blocks for creating modern web interfaces with minimal effort."
+	/>
 
 	<Grid columns={2}>
-		<Card title="interface components">
-			<div class="mb-comfortable">
+		<Card variant="default" title="interface components">
+			<div class="component-preview">
 				<Button variant="primary" class="mr-compact">Primary</Button>
 				<Button variant="secondary" class="mr-compact">Secondary</Button>
 				<Button variant="accent">Accent</Button>
 			</div>
-			<p>
+			<p class="text-muted-foreground">
 				buttons, cards, forms, and navigation elements built with accessibility in mind and designed
 				to work seamlessly together across different contexts.
 			</p>
 		</Card>
 
-		<Card title="layout system">
-			<div class="mb-comfortable">
-				<div class="grid-demo-preview">
-					<div class="grid-demo-item"></div>
-					<div class="grid-demo-item"></div>
-					<div class="grid-demo-item"></div>
-				</div>
+		<Card variant="default" title="layout system">
+			<div class="grid-preview">
+				<div class="grid-demo-item"></div>
+				<div class="grid-demo-item"></div>
+				<div class="grid-demo-item"></div>
 			</div>
-			<p>
+			<p class="text-muted-foreground">
 				flexible grid systems, containers, and spacing utilities that adapt to different screen
 				sizes whilst maintaining visual consistency and optimal content flow.
 			</p>
 		</Card>
 	</Grid>
 
-	<div style="text-align: center; margin-top: var(--space-spacious);">
+	<div class="cta-container">
 		<Button 
 			variant="primary" 
 			size="lg"
@@ -163,50 +158,87 @@
 
 <!-- Getting Started Section -->
 <Section>
-	<h2 class="section-title">getting started</h2>
+	<PageHeader 
+		title="getting started"
+		description="start exploring our design system with these key resources"
+	/>
 
 	<Grid columns={4}>
-		<Card title="colours" href="/colors">
+		<Card variant="default" title="colours" href="/colors">
 			<ColorSwatch 
 				color="var(--color-green-500)"
 				size="lg"
 				class="mb-normal"
 			/>
-			<p>explore our carefully crafted colour palettes and accessibility guidelines.</p>
+			<p class="text-muted-foreground">explore our carefully crafted colour palettes and accessibility guidelines.</p>
 		</Card>
 
-		<Card title="typography" href="/typography">
+		<Card variant="default" title="typography" href="/typography">
 			<div class="text-2xl font-primary mb-normal">Aa</div>
-			<p>discover our typography system and text styling conventions.</p>
+			<p class="text-muted-foreground">discover our typography system and text styling conventions.</p>
 		</Card>
 
-		<Card title="spacing" href="/spacing">
+		<Card variant="default" title="spacing" href="/spacing">
 			<SpacingDemo size="1.5rem" showLabel={false} class="mb-normal" />
-			<p>learn about our systematic approach to spacing and layout rhythm.</p>
+			<p class="text-muted-foreground">learn about our systematic approach to spacing and layout rhythm.</p>
 		</Card>
 
-		<Card title="components" href="/components">
+		<Card variant="default" title="components" href="/components">
 			<Button variant="primary" size="sm" class="mb-normal">Button</Button>
-			<p>browse our complete library of accessible, reusable interface components.</p>
+			<p class="text-muted-foreground">browse our complete library of accessible, reusable interface components.</p>
 		</Card>
 	</Grid>
 </Section>
 
 <style>
-	.grid-demo-preview {
+	.color-swatches {
 		display: flex;
-		gap: 0.5rem;
-		margin-bottom: 1rem;
+		gap: var(--space-compact);
+		margin-bottom: var(--space-normal);
+	}
+
+	.spacing-demo {
+		display: flex;
+		align-items: end;
+		gap: var(--space-tight);
+		margin-bottom: var(--space-normal);
+	}
+
+	.typography-preview {
+		margin-bottom: var(--space-normal);
+	}
+
+	.component-preview {
+		margin-bottom: var(--space-normal);
+	}
+
+	.grid-preview {
+		display: flex;
+		gap: var(--space-compact);
+		margin-bottom: var(--space-normal);
 	}
 
 	.grid-demo-item {
 		flex: 1;
-		height: 2rem;
+		height: var(--space-spacious);
 		background: var(--color-primary-200);
 		border-radius: var(--border-radius-sm);
 	}
 
-	.mr-compact {
-		margin-right: var(--space-compact);
+	.cta-container {
+		text-align: center;
+		margin-top: var(--space-spacious);
+	}
+
+	.mb-normal {
+		margin-bottom: var(--space-normal);
+	}
+
+	.mb-tight {
+		margin-bottom: var(--space-tight);
+	}
+
+	.text-muted-foreground {
+		color: var(--color-muted-foreground);
 	}
 </style>
